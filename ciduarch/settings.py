@@ -25,7 +25,7 @@ SECRET_KEY = '&&k26it*c_914k#j8s3f^dc#e)$s1*x9=l72hn%x)$9_ep4kd4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sistemascidu.pythonanywhere.com']
 
 
 # Application definition
