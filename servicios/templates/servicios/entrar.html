@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+	<head>
+		<title>Entrar | Seguimiento de sistemas</title>
+		<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="/static/admin/css/login.css" />
+		<link rel="stylesheet" type="text/css" href="{% static 'servicios/css/base.css' %}" />
+	</head>
+	<body class="login">
+		<div id="container">
+			<div id="header"><div id="branding"><h1><a href="/admin/">Iniciar sesión</a></h1></div>
+			</div>
+			<div id="content" class="colM">
+				{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+				<div id="content-main">
+					<form action="../ingresar/" method="post" id="login-form">
+						{% csrf_token %}
+						<div class="form-row">
+							<label class="required" for="id_username">Usuario:</label>
+							<input id="id_username" maxlength="254" name="username" type="text" required />
+						</div>
+						<div class="form-row">
+							<label class="required" for="id_password">Contraseña:</label>
+							<input id="id_password" name="password" type="password" required />
+						</div>
+						<div class="submit-row">
+							<input type="submit" value="Entrar" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+

@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en-us" >
+    <head>
+        <title>Seguimiento de servicios</title>
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'servicios/css/base.css' %}" />
+        <script type="text/javascript" src="{% static 'servicios/js/jquery-3.1.1.min.js' %}" ></script>
+        <script type="text/javascript" src="{% static 'servicios/js/jquery-ui.min.js' %}"></script>
+    </head>
+<body>
+    <div id="container">
+        <!-- Header -->
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name"><a href="/admin/">CIDU-ARCH</a></h1>
+            </div>
+            <div id="user-tools">
+                Bienvenido,
+                <strong>{{user.first_name}}</strong>.
+                <a href="/">Registrar</a> /
+                <a href="#">Devolución</a> /
+                <a href="/servicios/">Consultar</a> /
+                <a href="/salir/">Cerrar sesión</a>
+            </div>
+        </div>
+        <!-- CONTENT -->
+        <div id="content" class="colM">
+            <h2>Devolución</h2>
+            <form action="../../crudservicio/" method="post">
+                {% csrf_token %}
+                <fieldset class="module aligned">
+                    <div>
+                        <div class="form-row field-idservicio"><div>
+                            <label class="readonly" for="idservicio">Núm. de Servicio:</label>
+                            <input class="vTextField" id="idservicio" maxlength="200" name="idservicio" type="text" value="{{item.id}}" />
+                        </div></div>
+                    </div>
+                </fieldset>
+                <div class="submit-row">
+                    <input type="submit" value="Cancelar" class="default" name="c" />
+                    <input type="submit" value="Devolver" class="default" name="d" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

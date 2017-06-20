@@ -1,0 +1,102 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-us" >
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+    {% include "servicios/cssyjs.html" %}    
+    <script type="text/javascript" src="{% static 'servicios/js/listas.js' %}"></script>
+</head>
+<body>
+	<div id="container">
+		<!-- Header -->
+        {% include "servicios/encabezado.html" %}    
+        <!-- CONTENT -->
+        <div id="content" class="colM">
+            <h2>
+                {{lista.titulo}}
+                <form id="search-form">
+                    <div class="form-row field-destinatario"><div>
+                        <input class="vTextField" id="id_term" maxlength="200" name="term" type="text" />
+                        <span id="btnbuscar" class="fa fa-search"></span>
+                    </div></div>
+                </form>
+            </h2>
+            <table id="result_list">
+                <thead>
+                    <tr>
+                        <th scope="col"  class="column-id">
+                            <div class="text"><a href="">Núm.</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-oficio">
+                            <div class="text"><a href="">Oficio</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-archivo">
+                            <div class="text"><a href="">Archivo</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-fondo">
+                            <div class="text"><a href="">Fondo</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-seccion">
+                            <div class="text"><a href="">Sección</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-serie">
+                            <div class="text"><a href="">Serie</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-expediente">
+                            <div class="text"><a href="">Expediente</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-tipo">
+                            <div class="text"><a href="">Tipo</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-fechaEntrega">
+                            <div class="text"><a href="">Fecha de Entrega</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-usuarioEntrega">
+                            <div class="text"><a href="">Usuario de Entrega</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-fechaDevolucion">
+                            <div class="text"><a href="">Fecha de Devolución</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"  class="column-usuarioRecibe">
+                            <div class="text"><a href="">Usuario que Recibe</a></div>
+                            <div class="clear"></div>
+                        </th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in lista.items %}
+                    <tr class="row">
+                        <td class="field-id"><a href="/servicio/{{s.id}}/v">{{s.id}}</a></td>
+                        <td class="field-oficio">{{s.oficio}}</td>
+                        <td class="field-archivo">{{s.fondo.padre.nombre}}</td>
+                        <td class="field-fondo">{{s.fondo}}</td>
+                        <td class="field-seccion">{{s.seccion|default_if_none:""}}</td>
+                        <td class="field-serie">{{s.serie|default_if_none:""}}</td>
+                        <td class="field-expediente">{{s.expediente}}</td>
+                        <td class="field-tipo">{{s.getTipoDesc}}</td>
+                        <td class="field-fechaEntrega">{{s.fechaEntrega}}</td>
+                        <td class="field-usuarioEntrega">{{s.usuarioEntrega}}</td>
+                        <td class="field-fechaDevolucion">{{s.fechaDevolucion|default_if_none:""}}</td>
+                        <td class="field-usuarioRecibe">{{s.usuarioRecibe|default_if_none:""}}</td>
+                        <td><a href="/servicio/{{s.id}}/v">Ver</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

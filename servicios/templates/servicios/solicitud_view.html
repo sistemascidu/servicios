@@ -1,0 +1,92 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en-us" >
+	<head>
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+		{% include "servicios/cssyjs.html" %}   
+        <script type="text/javascript" src="{% static 'servicios/js/solicitud.js' %}" ></script>
+	</head>
+<body>
+	<div id="container">
+		<!-- Header -->
+    	{% include "servicios/encabezado.html" %}
+		<!-- CONTENT -->
+		<div id="content" class="colM">
+            <h2>{{titulo}}</h2>
+			{% if item %}
+            <div id="div-errores" class="errornote">
+                Por favor, agregue los datos requeridos: <br/>
+                <ul id="df">
+                    <li id="ed">Dependencia</li>
+                    <li id="ei">Interesado</li>
+                    <li id="et">Tipo</li>
+                    <li id="ef">Fecha de solicitud</li>
+                </ul>
+            </div>
+            {% if item.id > 0 %}
+            <a href="{{item.getEnlaceServicio}}">Servicio</a>
+            {% endif %}
+			<form action="../../crudsolicitud/" method="post">
+				{% csrf_token %}
+				<fieldset class="module aligned">
+                    <div>
+                        <div class="form-row field-idsolicitud"><div>
+                            <label class="readonly" for="idsolicitud">Núm. de Solicitud:</label>
+                            <input class="vTextField" id="idsolicitud" maxlength="200" name="idsolicitud" type="text" value="{{item.id|default_if_none:""}}" readonly />
+                        </div></div>
+                        <div class="form-row field-dependencia"><div>
+                            <label class="readonly" for="dependencia">Dependencia:</label>
+                            <input class="vTextField" id="dependencia" maxlength="200" name="dependencia" type="text" value="{{item.dependencia}}" {% if sololectura %} readonly {% endif %} />
+                        </div></div>
+                        <div class="form-row field-interesado"><div>
+                            <label class="readonly" for="interesado">Interesado:</label>
+                            <input class="vTextField" id="interesado" maxlength="200" name="interesado" type="text" value="{{item.interesado}}" {% if sololectura %} readonly {% endif %} />
+                        </div></div>
+                        <div class="form-row field-tipo"><div>
+                            <label class="readonly" for="id_tipo">Tipo:</label>
+                            {% if sololectura %}
+                            <input class="vTextField" id="id_tipo" maxlength="200" name="tipo" type="text" value="{{item.getTipoDesc}}" readonly />
+                            {% else %}
+                            <select id="tipo" name="tipo" class="vTextField">
+                                <option value {% if item.id == 'None' %}selected="selected"{% endif %}>---------</option>
+                                {% for value,text in item.lista_tipos %}
+                                <option value="{{value}}" {% if item.id != 'None' and item.tipo == value %}selected="selected"{% endif %}>{{text}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </div></div>
+                        <div class="form-row field-referencia"><div>
+                            <label class="readonly" for="referencia">Referencia:</label>
+                            <input class="vTextField" id="referencia" maxlength="10" name="referencia" type="text" value="{{item.referencia}}" {% if sololectura %} readonly {% endif %} />
+                        </div></div>
+                        <div class="form-row field-fechaSolicitud"><div>
+                            <label class="readonly" for="fechaSolicitud">Fecha Solicitud:</label>
+                            <input class="vTextField" id="fechaSolicitud" maxlength="10" name="fechaSolicitud" type="date" value="{{item.fechaSolicitud}}" {% if sololectura %} readonly {% endif %} />
+                        </div></div>
+                        <div class="form-row field-usuarioRecibe"><div>
+                            <label class="readonly" for="usuarioRecibe">Usuario Recibe:</label>
+                            <input class="vTextField" id="usuarioRecibe" maxlength="200" name="usuarioRecibe" type="text" value="{{item.usuarioRecibe}}" readonly />
+                        </div></div>
+        				<div class="form-row field-fechaRecibe"><div>
+                            <label class="readonly" for="fechaRecibe">Fecha Recibe:</label>
+                            <input class="vTextField" id="fechaRecibe" maxlength="10" name="fechaRecibe" type="text" value="{{item.fechaRecibe}}" readonly />
+                        </div></div>
+                    </div>
+				</fieldset>
+                <div class="submit-row">
+                    {% if sololectura %}
+                    <input type="submit" value="Eliminar" class="default" name="b" />
+                    <input type="button" value="Editar" class="default" name="e" />
+                    {% else %}
+                    <input type="submit" value="Cancelar" class="default" name="c" />
+                    <input type="submit" value="Guardar" class="default" name="g" />
+                    {% endif %}
+                </div>
+			</form>
+			{% endif %}
+		</div>
+	</div>
+</body>
+</html>

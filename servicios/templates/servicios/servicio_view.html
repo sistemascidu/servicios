@@ -1,0 +1,144 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en-us" >
+	<head>
+		<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+        {% include "servicios/cssyjs.html" %}    
+        <script type="text/javascript" src="{% static 'servicios/js/servicio.js' %}" ></script>
+	</head>
+<body>
+	<div id="container">
+		<!-- Header -->
+    	{% include "servicios/encabezado.html" %}
+		<!-- CONTENT -->
+		<div id="content" class="colM">
+            <h2>{{titulo}}</h2>
+			{% if item %}
+            <div id="div-errores" class="errornote">
+                Por favor, agregue los datos requeridos: <br/>
+                <ul id="df">
+                    <li id="ef">Fondo</li>
+                    <li id="ee">Expediente</li>
+                    <li id="ed">Destinatario</li>
+                    <li id="et">Tipo</li>
+                </ul>
+            </div>
+			<form action="../../crudservicio/" method="post">
+				{% csrf_token %}
+				<fieldset class="module aligned">
+                    <div>
+                        <div class="form-row field-solicitud"><div>
+                            <label class="readonly" for="solicitud">Núm. de Solicitud:</label>
+                            <input class="vTextField" id="solicitud" maxlength="200" name="solicitud" type="text" value="{{item.solicitud.id}}" readonly />
+                        </div></div>
+                        <div class="form-row field-idservicio"><div>
+                            <label class="readonly" for="idservicio">Núm. de Servicio:</label>
+                            <input class="vTextField" id="idservicio" maxlength="200" name="idservicio" type="text" value="{{item.id|default_if_none:""}}" readonly />
+                        </div></div>
+                        <div class="form-row field-oficio"><div>
+                            <label class="readonly" for="id_oficio">Oficio:</label>
+                            <input class="vTextField" id="id_oficio" maxlength="200" name="oficio" type="text" value="{{item.oficio}}" {% if sololectura %} readonly {% endif %} />
+                        </div></div>
+                        <div class="form-row field-fondo"><div>
+                            <label class="readonly" for="id_fondo">Fondo:</label>
+                            {% if sololectura %}
+                            <input class="vTextField" id="id_fondo" maxlength="200" name="fondo" type="text" value="{{item.fondo.nombre}}" readonly />
+                            {% else %}
+                            <select id="id_fondo" name="fondo" class="vTextField">
+                                <option value="-" {% if item.id == 'None' %}selected="selected"{% endif %}>---------</option>
+                                {% for f in lista_fondos %}
+                                <option value="{{f.id}}" {% if item.id != 'None' and item.tipo == f.id %}selected="selected"{% endif %}>{{f.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </div></div>
+                        <div class="form-row field-seccion"><div>
+                            <label class="readonly" for="id_seccion">Seccion:</label>
+                            {% if sololectura %}
+                            <input class="vTextField" id="id_seccion" maxlength="200" name="seccion" type="text" value="{{item.seccion.nombre}}" readonly />
+                            {% else %}
+                            <select id="id_seccion" name="seccion" class="vTextField">
+                                <option value="-" {% if item.id == 'None' %}selected="selected"{% endif %}>---------</option>
+                                {% for f in item.getSecciones %}
+                                <option value="{{f.id}}" {% if item.id != 'None' and item.tipo == f.id %}selected="selected"{% endif %} data-padre="{{f.padre.id}}">{{f.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </div></div>
+                        <div class="form-row field-serie"><div>
+                            <label class="readonly" for="id_serie">Serie:</label>
+                            {% if sololectura %}
+                            <input class="vTextField" id="id_serie" maxlength="200" name="serie" type="text" value="{{item.serie.nombre}}" readonly />
+                            {% else %}
+                            <select id="id_serie" name="serie" class="vTextField">
+                                <option value="-" {% if item.id == 'None' %}selected="selected"{% endif %}>---------</option>
+                                {% for f in item.getSeries %}
+                                <option value="{{f.id}}" {% if item.id != 'None' and item.tipo == f.id %}selected="selected"{% endif %} data-padre="{{f.padre.id}}">{{f.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </div></div>
+        				<div class="form-row field-expediente"><div>
+                        	<label class="readonly" for="id_expediente">Expediente:</label>
+                            <input class="vTextField" id="id_expediente" maxlength="200" name="expediente" type="text" value="{{item.expediente}}" {% if sololectura %} readonly {% endif %} />
+                    	</div></div>
+                        <div class="form-row field-destinatario"><div>
+                            <label class="readonly" for="id_destinatario">Destinatario:</label>
+                            <input class="vTextField" id="id_destinatario" maxlength="200" name="destinatario" type="text" value="{{item.destinatario}}" {% if sololectura %} readonly {% endif %} />
+                        </div></div>
+                        <div class="form-row field-tipo"><div>
+                            <label class="readonly" for="id_tipo">Tipo:</label>
+                            {% if sololectura %}
+                            <input class="vTextField" id="id_tipo" maxlength="200" name="tipo" type="text" value="{{item.getTipoDesc}}" readonly />
+                            {% else %}
+                            <select id="id_tipo" name="tipo" class="vTextField">
+                                <option value {% if item.id == 'None' %}selected="selected"{% endif %}>---------</option>
+                                {% for value,text in item.lista_tipos %}
+                                <option value="{{value}}" {% if item.id != 'None' and item.tipo == value %}selected="selected"{% endif %}>{{text}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </div></div>
+                        {% if dev %}
+                        <div class="form-row field-fechaEntrega"><div>
+                            <label class="readonly" for="id_fechaEntrega">Fecha Entrega:</label>
+                            <input class="vTextField" id="id_fechaEntrega" maxlength="10" name="fechaEntrega" type="text" value="{{item.fechaEntrega}}" readonly />
+                        </div></div>
+                        <div class="form-row field-usuarioEntrega"><div>
+                            <label class="readonly" for="id_usuarioEntrega">Usuario Entrega:</label>
+                            <input class="vTextField" id="id_usuarioEntrega" maxlength="200" name="usuarioEntrega" type="text" value="{{item.usuarioEntrega}}" readonly />
+                        </div></div>
+                        {% if item.tipo == 'p' %}
+        				<div class="form-row field-fechaDevolucion"><div>
+                            <label class="readonly" for="id_fechaDevolucion">Fecha Devolución:</label>
+                            <input class="vTextField" id="id_fechaDevolucion" maxlength="10" name="fechaDevolucion" type="text" value="{{item.fechaDevolucion}}" readonly />
+                        </div></div>
+                        <div class="form-row field-usuarioRecibe"><div>
+                            <label class="readonly" for="id_usuarioRecibe">Usuario Recibe:</label>
+                            <input class="vTextField" id="id_usuarioRecibe" maxlength="200" name="usuarioRecibe" type="text" value="{{item.usuarioRecibe}}" readonly />
+                        </div></div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+				</fieldset>
+                <div class="submit-row">
+                    {% if sololectura %}
+                    <input type="submit" value="Eliminar" class="default" name="b" />
+                    {% if item.tipo == 'p' %}
+                    <input type="submit" value="Devolver" class="default" name="d" />
+                    {% endif %}
+                    <input type="button" value="Editar" class="default" name="e" />
+                    <input type="submit" value="Imprimir" class="default" name="i" />
+                    {% else %}
+                    <input type="submit" value="Cancelar" class="default" name="c" />
+                    <input type="submit" value="Guardar" class="default" name="g" />
+                    {% endif %}
+                </div>
+			</form>
+			{% endif %}
+		</div>
+	</div>
+</body>
+</html>

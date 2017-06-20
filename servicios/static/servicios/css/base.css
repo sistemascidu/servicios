@@ -1,0 +1,62 @@
+.login #container {
+	min-height: 230px;
+}
+textarea {
+	width: 50%;
+}
+input[name=b], input[name=e] {
+	display: none;
+}
+#search-form {
+	float: right;
+	display: block;
+	width: 30%;
+}
+/* formato imp. */
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+.logo {
+	max-width: 130px;
+}
+.under {
+	border-bottom: solid thin black;
+}
+.firma {
+	padding-top: 30px;
+}
+.middle {
+	text-align: center;
+}
+.subtitle{
+	border-top: solid 2px #666666;
+}
+table.formato {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	border: black thin solid;
+	padding: 20px;
+}
+/* clasificacion */
+.orgchart {
+  background: #fff; 
+}
+.orgchart .node .title i {
+	padding-right: 5px;
+}
+.orgchart .node .title, .orgchart .node .content {
+	padding: 0px 5px;
+	text-transform: capitalize;
+}
+.orgchart .verticalNodes ul li {
+	list-style-type:none;
+}
+.orgchart .node {
+	width:auto;
+}
+.orgchart td {
+	border-bottom: none;
+}

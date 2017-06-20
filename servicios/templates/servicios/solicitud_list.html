@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-us" >
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css" />
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+    {% include "servicios/cssyjs.html" %}    
+    <script type="text/javascript" src="{% static 'servicios/js/listas.js' %}"></script>
+</head>
+<body>
+	<div id="container">
+		<!-- Header -->
+        {% include "servicios/encabezado.html" %}    
+		<!-- CONTENT -->
+		<div id="content" class="colM">
+            <h2>
+                {{lista.titulo}} 
+                <br/><a href="/solicitud" class="addlink">Agregar Solicitud</a>
+                <form id="search-form">
+                    <div class="form-row field-buscar"><div>
+                        <input class="vTextField" id="id_term" maxlength="200" name="term" type="text" />
+                        <span id="btnbuscar" class="fa fa-search"></span>
+                    </div></div>
+                </form>
+            </h2>
+            <table id="result_list">
+                <thead>
+                    <tr>
+                        <th scope="col"  class="column-id">
+                         <div class="text"><a href="">Núm.</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"  class="column-dependencia">
+                         <div class="text"><a href="">Dependencia</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"  class="column-intersado">
+                         <div class="text"><a href="">Interesado</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"  class="column-tipo">
+                         <div class="text"><a href="">Tipo</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"  class="column-referencia">
+                         <div class="text"><a href="">Referencia</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"  class="column-fechaSolicitud">
+                         <div class="text"><a href="">Fecha de solicitud</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"  class="column-usuarioRecibe">
+                         <div class="text"><a href="">Usuario que recibe</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"  class="column-fechaRecibe">
+                         <div class="text"><a href="">Fecha en que se recibe</a></div>
+                         <div class="clear"></div>
+                     </th>
+                     <th scope="col"></th>
+                 </tr>
+             </thead>
+             <tbody>
+                {% for s in lista.items %}
+                <tr class="row">
+                    <td class="field-id"><a href="/solicitud/{{s.id}}/v">{{s.id}}</a></td>
+                    <td class="field-dependencia">{{s.dependencia}}</td>
+                    <td class="field-interesado">{{s.interesado}}</td>
+                    <td class="field-tipo">{{s.getTipoDesc}}</td>
+                    <td class="field-referencia">{{s.referencia}}</td>
+                    <td class="field-fechaSolicitud">{{s.fechaSolicitud}}</td>
+                    <td class="field-usuarioRecibe">{{s.usuarioRecibe}}</td>
+                    <td class="field-fechaRecibe">{{s.fechaRecibe}}</td>
+                    <td><a href="/solicitud/{{s.id}}/v">Ver</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

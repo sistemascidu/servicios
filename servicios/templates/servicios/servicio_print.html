@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en-us" >
+	<head>
+		{% include "servicios/cssyjs.html" %}    
+	</head>
+<body>
+	<div id="container">
+        <!-- Breadcrumbs -->
+        <div class="no-print">
+            <a href="/servicio/{{item.id}}/v">Regresar</a>
+        </div>
+		<!-- CONTENT -->
+		<div id="content" class="colM">
+			{% if item %}
+            <table id="formato">
+                <tr>
+                    <td><img src="{% static 'servicios/images/Logo-UV.jpg' %}" class="logo" /></td>
+                    <td colspan="3" class="middle">
+                        <h2> Universidad Veracruzana <br /> Centro de Investigación en Documentación sobre la Universidad </h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="subtitle"><h3>Comprobante de servicio</h3></td>
+                    <td><span>Folio: {{item.id}} </span></td>
+                    <td><span> Oficio: {{item.oficio}}</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Expediente</td>
+                    <td colspan="2">Servicio</td>
+                </tr>
+                <tr>
+                    <td>Archivo:</td>
+                    <td class="under">{{item.fondo.padre.nombre}}</td>
+                    <td>Destinatario:</td>
+                    <td class="under">{{item.destinatario}}</td>
+                </tr>
+                <tr>
+                    <td>Fondo:</td>
+                    <td class="under">{{item.fondo.nombre}}</td>
+                    <td>Tipo:</td>
+                    <td class="under">{{item.getTipoDesc}}</td>
+                </tr>
+                <tr>
+                    <td>Sección:</td>
+                    <td class="under">{{item.seccion.nombre}}</td>
+                    <td>Fecha Entrega:</td>
+                    <td class="under">{{item.fechaEntrega}}</td>
+                </tr>
+                <tr>
+                    <td>Serie:</td>
+                    <td class="under">{{item.serie.nombre}}</td>
+                    <td>Fecha Devolución:</td>
+                    <td class="under"></td>
+                </tr>
+                <tr>
+                    <td>Expediente:</td>
+                    <td class="under">{{item.expediente}}</td>
+                    <td>Usuario Recibe:</td>
+                    <td class="under"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="" class="firma middle">Recibe</td>
+                    <td colspan="2" class="firma middle">Entrega</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="" class="firma under"></td>
+                    <td colspan="2" class="firma under"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="" class="middle">Nombre y firma</td>
+                    <td colspan="2" class="middle">{{item.usuarioEntrega.first_name}} {{item.usuarioEntrega.last_name}}</td>
+                </tr>
+            </table>
+            {% endif %}
+        </div>
+	</div>
+</body>
+</html>
