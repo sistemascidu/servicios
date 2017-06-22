@@ -61,6 +61,7 @@ def crudsolicitud(request):
 		item.tipo = request.POST['tipo']
 		# guardamos item
 		item.save()
+		direccion = '/solicitud/' + str(item.id) + '/v'
 	elif ('m' in request.POST): # modificar 
 		if (request.POST['idsolicitud'] != 'None'):
 			direccion = '/solicitud/' + request.POST['idsolicitud'] + '/e'
