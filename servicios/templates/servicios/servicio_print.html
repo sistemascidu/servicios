@@ -24,7 +24,7 @@
                 <tr>
                     <td colspan="2" class="subtitle"><h3>Comprobante de servicio</h3></td>
                     <td><span>Folio: {{item.id}} </span></td>
-                    <td><span> Oficio: {{item.oficio}}</span></td>
+                    <td><span> Oficio: {{item.oficio|default_if_none:''}}</span></td>
                 </tr>
                 <tr>
                     <td colspan="2">Expediente</td>
@@ -33,7 +33,7 @@
                 <tr>
                     <td>Archivo:</td>
                     <td class="under">{{item.fondo.padre.nombre}}</td>
-                    <td>Destinatario:</td>
+                    <td>Quien recibe el servicio:</td>
                     <td class="under">{{item.destinatario}}</td>
                 </tr>
                 <tr>
@@ -45,19 +45,19 @@
                 <tr>
                     <td>Sección:</td>
                     <td class="under">{{item.seccion.nombre}}</td>
-                    <td>Fecha Entrega:</td>
+                    <td>Fecha de Entrega:</td>
                     <td class="under">{{item.fechaEntrega}}</td>
                 </tr>
                 <tr>
                     <td>Serie:</td>
                     <td class="under">{{item.serie.nombre}}</td>
-                    <td>Fecha Devolución:</td>
+                    <td>Fecha de Devolución:</td>
                     <td class="under"></td>
                 </tr>
                 <tr>
                     <td>Expediente:</td>
                     <td class="under">{{item.expediente}}</td>
-                    <td>Usuario Recibe:</td>
+                    <td>Quien Recibe Devolución:</td>
                     <td class="under"></td>
                 </tr>
                 <tr>

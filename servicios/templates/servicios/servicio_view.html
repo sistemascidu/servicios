@@ -39,7 +39,7 @@
                         </div></div>
                         <div class="form-row field-oficio"><div>
                             <label class="readonly" for="id_oficio">Oficio:</label>
-                            <input class="vTextField" id="id_oficio" maxlength="200" name="oficio" type="text" value="{{item.oficio}}" {% if sololectura %} readonly {% endif %} />
+                            <input class="vTextField" id="id_oficio" maxlength="200" name="oficio" type="text" value="{{item.oficio|default_if_none:''}}" {% if sololectura %} readonly {% endif %} />
                         </div></div>
                         <div class="form-row field-fondo"><div>
                             <label class="readonly" for="id_fondo">Fondo:</label>
@@ -85,7 +85,7 @@
                             <input class="vTextField" id="id_expediente" maxlength="200" name="expediente" type="text" value="{{item.expediente}}" {% if sololectura %} readonly {% endif %} />
                     	</div></div>
                         <div class="form-row field-destinatario"><div>
-                            <label class="readonly" for="id_destinatario">Destinatario:</label>
+                            <label class="readonly" for="id_destinatario">Quien recibe:</label>
                             <input class="vTextField" id="id_destinatario" maxlength="200" name="destinatario" type="text" value="{{item.destinatario}}" {% if sololectura %} readonly {% endif %} />
                         </div></div>
                         <div class="form-row field-tipo"><div>
@@ -127,7 +127,7 @@
                     {% if sololectura %}
                     <input type="submit" value="Eliminar" class="default" name="b" />
                     {% if item.tipo == 'p' %}
-                    <input type="submit" value="Devolver" class="default" name="d" />
+                    <input type="submit" value="Devuelto" class="default" name="d" />
                     {% endif %}
                     <input type="button" value="Editar" class="default" name="e" />
                     <input type="submit" value="Imprimir" class="default" name="i" />

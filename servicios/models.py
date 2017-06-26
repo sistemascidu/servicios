@@ -68,7 +68,7 @@ class Servicio(models.Model):
 	tipo = models.CharField(max_length=1, choices=lista_tipos)
 	usuarioEntrega = models.ForeignKey('auth.User', related_name='usr_prestamo')
 	usuarioRecibe = models.ForeignKey('auth.User', related_name='usr_recibe', blank=True, null=True)
-	oficio = models.CharField(max_length = 20)
+	oficio = models.CharField(max_length = 20, blank=True, null=True)
 	solicitud = models.ForeignKey(Solicitud, related_name='servicio_solicitud')
 	# methods
 	def getTipoDesc(self):

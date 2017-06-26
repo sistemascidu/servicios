@@ -34,7 +34,7 @@
                     <div>
                         <div class="form-row field-idsolicitud"><div>
                             <label class="readonly" for="idsolicitud">Núm. de Solicitud:</label>
-                            <input class="vTextField" id="idsolicitud" maxlength="200" name="idsolicitud" type="text" value="{{item.id|default_if_none:""}}" readonly />
+                            <input class="vTextField" id="idsolicitud" maxlength="200" name="idsolicitud" type="text" value="{{item.id|default_if_none:''}}" readonly />
                         </div></div>
                         <div class="form-row field-dependencia"><div>
                             <label class="readonly" for="dependencia">Dependencia:</label>
@@ -59,19 +59,19 @@
                         </div></div>
                         <div class="form-row field-referencia"><div>
                             <label class="readonly" for="referencia">Referencia:</label>
-                            <input class="vTextField" id="referencia" maxlength="200" name="referencia" type="text" value="{{item.referencia}}" {% if sololectura %} readonly {% endif %} />
+                            <input class="vTextField" id="referencia" maxlength="200" name="referencia" type="text" value="{{item.referencia|default_if_none:''}}" {% if sololectura %} readonly {% endif %} />
                         </div></div>
                         <div class="form-row field-fechaSolicitud"><div>
-                            <label class="readonly" for="fechaSolicitud">Fecha Solicitud:</label>
+                            <label class="readonly" for="fechaSolicitud">Fecha de solicitud:</label>
                             <input class="vTextField" id="fechaSolicitud" maxlength="10" name="fechaSolicitud" type="date" value="{{item.fechaSolicitud}}" {% if sololectura %} readonly {% endif %} />
                         </div></div>
                         <div class="form-row field-usuarioRecibe"><div>
-                            <label class="readonly" for="usuarioRecibe">Usuario Recibe:</label>
+                            <label class="readonly" for="usuarioRecibe">Usuario que recibe:</label>
                             <input class="vTextField" id="usuarioRecibe" maxlength="200" name="usuarioRecibe" type="text" value="{{item.usuarioRecibe}}" readonly />
                         </div></div>
         				<div class="form-row field-fechaRecibe"><div>
-                            <label class="readonly" for="fechaRecibe">Fecha Recibe:</label>
-                            <input class="vTextField" id="fechaRecibe" maxlength="10" name="fechaRecibe" type="text" value="{{item.fechaRecibe}}" readonly />
+                            <label class="readonly" for="fechaRecibe">Fecha en que se recibe:</label>
+                            <input class="vTextField" id="fechaRecibe" maxlength="10" name="fechaRecibe" type="text" value="{{item.fechaRecibe|default_if_none:''}}" readonly />
                         </div></div>
                     </div>
 				</fieldset>

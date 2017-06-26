@@ -80,7 +80,8 @@ def crudservicio(request):
 		f = forms.CharField(max_length=200, required=True)
 		item.expediente = f.clean(request.POST['expediente'])
 		item.destinatario = f.clean(request.POST['destinatario'])
-		item.oficio = f.clean(request.POST['oficio'])
+		if (request.POST['oficio']):
+			item.oficio = f.clean(request.POST['oficio'])
 		item.tipo = request.POST['tipo']
 		item.fondo = Categoria.objects.get(id=request.POST['fondo'])
 		item.solicitud = Solicitud.objects.get(pk=request.POST['solicitud'])
