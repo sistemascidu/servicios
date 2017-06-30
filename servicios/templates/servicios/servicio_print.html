@@ -27,36 +27,36 @@
                     <td><span> Oficio: {{item.oficio|default_if_none:''}}</span></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Expediente</td>
-                    <td colspan="2">Servicio</td>
+                    <td colspan="2" class="col-exp">Expediente</td>
+                    <td colspan="2" class="col-ser">Servicio</td>
                 </tr>
                 <tr>
-                    <td>Archivo:</td>
-                    <td class="under">{{item.fondo.padre.nombre}}</td>
+                    <td class="lbl">Archivo:</td>
+                    <td class="under cont">{{item.fondo.padre.nombre}}</td>
                     <td>Quien recibe el servicio:</td>
                     <td class="under">{{item.destinatario}}</td>
                 </tr>
                 <tr>
-                    <td>Fondo:</td>
-                    <td class="under">{{item.fondo.nombre}}</td>
+                    <td class="lbl">Fondo:</td>
+                    <td class="under cont">{{item.fondo.nombre}}</td>
                     <td>Tipo:</td>
                     <td class="under">{{item.getTipoDesc}}</td>
                 </tr>
                 <tr>
-                    <td>Sección:</td>
-                    <td class="under">{{item.seccion.nombre}}</td>
+                    <td class="lbl">Sección:</td>
+                    <td class="under cont">{{item.seccion.nombre}}</td>
                     <td>Fecha de Entrega:</td>
                     <td class="under">{{item.fechaEntrega}}</td>
                 </tr>
                 <tr>
-                    <td>Serie:</td>
-                    <td class="under">{{item.serie.nombre}}</td>
+                    <td class="lbl">Serie:</td>
+                    <td class="under cont">{{item.serie.nombre}}</td>
                     <td>Fecha de Devolución:</td>
                     <td class="under"></td>
                 </tr>
                 <tr>
-                    <td>Expediente:</td>
-                    <td class="under">{{item.expediente}}</td>
+                    <td class="lbl">Expediente:</td>
+                    <td class="under cont"><div class="exped">{{item.expediente}}</div></td>
                     <td>Quien Recibe Devolución:</td>
                     <td class="under"></td>
                 </tr>
@@ -72,7 +72,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="" class="middle">Nombre y firma</td>
+                    <td colspan="" class="middle">{{item.destinatario}}</td>
                     <td colspan="2" class="middle">{{item.usuarioEntrega.first_name}} {{item.usuarioEntrega.last_name}}</td>
                 </tr>
             </table>

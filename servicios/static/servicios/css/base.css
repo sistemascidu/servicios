@@ -35,11 +35,20 @@ input[name=b], input[name=e] {
 .subtitle{
 	border-top: solid 2px #666666;
 }
-table.formato {
+table#formato {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	border: black thin solid;
-	padding: 20px;
+	padding: 10px;
+	width: 100%;
+	vertical-align: top;
 }
+.col-exp {
+	width:50%;
+}
+.cont {
+	word-break: break-all;
+}
+
 /* clasificacion */
 .orgchart {
   background: #fff; 
