@@ -22,7 +22,7 @@
                     </div></div>
                 </form>
             </h2>
-            <table id="result_list">
+            <table id="servicios">
                 <thead>
                     <tr>
                         <th scope="col"  class="column-id">
@@ -85,7 +85,7 @@
                         <td class="field-fondo">{{s.fondo}}</td>
                         <td class="field-seccion">{{s.seccion|default_if_none:""}}</td>
                         <td class="field-serie">{{s.serie|default_if_none:""}}</td>
-                        <td class="field-expediente">{{s.expediente}}</td>
+                        <td class="field-expediente cont"><div>{{s.expediente}}</div></td>
                         <td class="field-tipo">{{s.getTipoDesc}}</td>
                         <td class="field-fechaEntrega">{{s.fechaEntrega}}</td>
                         <td class="field-usuarioEntrega">{{s.usuarioEntrega}}</td>

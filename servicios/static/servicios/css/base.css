@@ -48,6 +48,10 @@ table#formato {
 .cont {
 	word-break: break-all;
 }
+/* lista de servicios */
+table#servicios {
+	width: 90%;
+}
 
 /* clasificacion */
 .orgchart {
